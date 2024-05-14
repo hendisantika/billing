@@ -1,0 +1,23 @@
+package id.my.hendisantika.billing.notifier.dao;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Created by IntelliJ IDEA.
+ * Project : billing
+ * User: hendisantika
+ * Email: hendisantika@gmail.com
+ * Telegram : @hendisantika34
+ * Date: 5/14/24
+ * Time: 10:08
+ * To change this template use File | Settings | File Templates.
+ */
+@Repository
+@RequiredArgsConstructor
+public class CustomerDao {
+    @PersistenceContext
+    private final EntityManager entityManager;
+}
