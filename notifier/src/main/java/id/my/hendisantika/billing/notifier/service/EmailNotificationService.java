@@ -1,5 +1,6 @@
 package id.my.hendisantika.billing.notifier.service;
 
+import id.my.hendisantika.billing.notifier.dao.EmailNotificationDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
