@@ -1,5 +1,6 @@
 package id.my.hendisantika.emailsender.service;
 
+import id.my.hendisantika.emailsender.model.EmailNotification;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,12 @@ public class EmailService {
 
     @Value("${mail.from}")
     private String from;
+
+    public void send(EmailNotification emailNotification) {
+        try {
+            mailSender.send(getMessagePreparator(emailNotification));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
