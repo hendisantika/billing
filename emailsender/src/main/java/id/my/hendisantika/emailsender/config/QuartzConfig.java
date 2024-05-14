@@ -2,11 +2,14 @@ package id.my.hendisantika.emailsender.config;
 
 import lombok.RequiredArgsConstructor;
 import org.quartz.JobDetail;
+import org.quartz.Trigger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,5 +42,15 @@ public class QuartzConfig {
         trigger.setStartDelay(3000);
         trigger.setCronExpression("0 0 23 ? * * *");
         return trigger;
+    }
+
+    @Bean
+    public SchedulerFactoryBean scheduler(Trigger trigger, JobDetail jobDetail) {
+        SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
+        schedulerFactory.setConfigLocation(new ClassPathResource("email.properties"));
+        schedulerFactory.setJobFactory(springBeanJobFactory());
+        schedulerFactory.setJobDetails(jobDetail);
+        schedulerFactory.setTriggers(trigger);
+        return schedulerFactory;
     }
 }
