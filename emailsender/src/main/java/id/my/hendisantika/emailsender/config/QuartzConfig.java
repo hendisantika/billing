@@ -2,7 +2,9 @@ package id.my.hendisantika.emailsender.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +20,13 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class QuartzConfig {
     private final ApplicationContext applicationContext;
+
+    @Bean
+    public JobDetailFactoryBean jobDetail() {
+        JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
+        jobDetailFactory.setJobClass(EmailJob.class);
+        jobDetailFactory.setDescription("Invoke Email Job...");
+        jobDetailFactory.setDurability(true);
+        return jobDetailFactory;
+    }
 }
