@@ -10,9 +10,11 @@ import id.my.hendisantika.billing.notifier.model.NotificationType;
 import id.my.hendisantika.billing.notifier.strategy.NotificationStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,5 +58,20 @@ public class EmailStrategy implements NotificationStrategy {
         emailNotification.setStatus(NotificationStatus.NEW);
         emailNotification.setCreatedDate(Instant.now());
         emailNotificationService.add(emailNotification);
+    }
+
+    @Autowired
+    public void setEmailNotificationService(EmailNotificationService emailNotificationService) {
+        this.emailNotificationService = emailNotificationService;
+    }
+
+    @PostConstruct
+    public void init() throws IOException {
+        template = freeMarkerConfiguration.getTemplate("email.ftl");
+    }
+
+    @Autowired
+    public void setFreeMarkerConfiguration(Configuration freeMarkerConfiguration) {
+        this.freeMarkerConfiguration = freeMarkerConfiguration;
     }
 }
