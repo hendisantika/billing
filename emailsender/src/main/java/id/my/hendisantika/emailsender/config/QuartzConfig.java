@@ -1,5 +1,6 @@
 package id.my.hendisantika.emailsender.config;
 
+import id.my.hendisantika.emailsender.job.EmailJob;
 import lombok.RequiredArgsConstructor;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
