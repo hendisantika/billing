@@ -1,6 +1,7 @@
 package id.my.hendisantika.billing.notifier.service;
 
 import id.my.hendisantika.billing.notifier.dao.EmailNotificationDao;
+import id.my.hendisantika.billing.notifier.model.EmailNotification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,4 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmailNotificationService {
     private EmailNotificationDao emailNotificationDao;
 
+    public long add(EmailNotification emailNotification) {
+        return emailNotificationDao.add(emailNotification);
+    }
 }
