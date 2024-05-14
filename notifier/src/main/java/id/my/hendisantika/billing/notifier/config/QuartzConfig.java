@@ -1,5 +1,6 @@
 package id.my.hendisantika.billing.notifier.config;
 
+import id.my.hendisantika.billing.notifier.job.NotificationJob;
 import lombok.RequiredArgsConstructor;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
