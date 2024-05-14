@@ -2,6 +2,7 @@ package id.my.hendisantika.billing.notifier;
 
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.cfg.AvailableSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Created by IntelliJ IDEA.
@@ -55,5 +57,15 @@ public class AppConfig {
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         return new HibernateJpaVendorAdapter();
+    }
+
+    @Bean
+    public Properties jpaProperties() {
+        Properties properties = new Properties();
+        properties.put(AvailableSettings.DIALECT, environment.getRequiredProperty("hibernate.dialect"));
+        properties.put(AvailableSettings.SHOW_SQL, environment.getRequiredProperty("hibernate.show_sql"));
+        properties.put(AvailableSettings.FORMAT_SQL, environment.getRequiredProperty("hibernate.format_sql"));
+        properties.put(AvailableSettings.DEFAULT_SCHEMA, environment.getRequiredProperty("hibernate.default_schema"));
+        return properties;
     }
 }
