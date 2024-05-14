@@ -8,6 +8,7 @@ import id.my.hendisantika.billing.notifier.model.NotificationStatus;
 import id.my.hendisantika.billing.notifier.model.NotificationType;
 import id.my.hendisantika.billing.notifier.model.SmsNotification;
 import id.my.hendisantika.billing.notifier.strategy.NotificationStrategy;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

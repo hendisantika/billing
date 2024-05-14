@@ -8,8 +8,8 @@ import id.my.hendisantika.billing.notifier.model.EmailNotification;
 import id.my.hendisantika.billing.notifier.model.NotificationStatus;
 import id.my.hendisantika.billing.notifier.model.NotificationType;
 import id.my.hendisantika.billing.notifier.strategy.NotificationStrategy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
@@ -29,10 +29,9 @@ import java.util.Map;
  * Time: 09:53
  * To change this template use File | Settings | File Templates.
  */
+@Slf4j
 @Component
 public class EmailStrategy implements NotificationStrategy {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(NotificationProcessorServiceImpl.class);
 
     private EmailNotificationService emailNotificationService;
     private Template template;
