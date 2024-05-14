@@ -1,5 +1,6 @@
 package id.my.hendisantika.emailsender.job;
 
+import id.my.hendisantika.emailsender.service.EmailProcessorService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -23,7 +24,7 @@ public class EmailJob implements Job {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailJob.class);
 
-    private EmailProcessorServiceImpl emailProcessorService;
+    private EmailProcessorService emailProcessorService;
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
@@ -31,7 +32,7 @@ public class EmailJob implements Job {
     }
 
     @Autowired
-    public void setEmailProcessorService(EmailProcessorServiceImpl emailProcessorService) {
+    public void setEmailProcessorService(EmailProcessorService emailProcessorService) {
         this.emailProcessorService = emailProcessorService;
     }
 }
