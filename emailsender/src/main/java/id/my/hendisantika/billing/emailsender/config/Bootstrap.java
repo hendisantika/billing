@@ -1,4 +1,4 @@
-package id.my.hendisantika.emailsender.config;
+package id.my.hendisantika.billing.emailsender.config;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

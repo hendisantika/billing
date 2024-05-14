@@ -1,4 +1,4 @@
-package id.my.hendisantika.emailsender.model;
+package id.my.hendisantika.billing.emailsender.model;
 
 /**
  * Created by IntelliJ IDEA.

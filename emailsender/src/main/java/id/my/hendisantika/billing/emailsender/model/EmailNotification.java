@@ -1,4 +1,4 @@
-package id.my.hendisantika.emailsender.model;
+package id.my.hendisantika.billing.emailsender.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

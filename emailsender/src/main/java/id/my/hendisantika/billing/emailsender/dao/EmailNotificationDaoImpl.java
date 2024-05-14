@@ -1,6 +1,6 @@
-package id.my.hendisantika.emailsender.dao;
+package id.my.hendisantika.billing.emailsender.dao;
 
-import id.my.hendisantika.emailsender.model.EmailNotification;
+import id.my.hendisantika.billing.emailsender.model.EmailNotification;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;

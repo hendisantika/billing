@@ -1,6 +1,6 @@
-package id.my.hendisantika.emailsender.dao;
+package id.my.hendisantika.billing.emailsender.dao;
 
-import id.my.hendisantika.emailsender.model.EmailNotification;
+import id.my.hendisantika.billing.emailsender.model.EmailNotification;
 
 import java.util.List;
 

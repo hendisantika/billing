@@ -1,7 +1,7 @@
-package id.my.hendisantika.emailsender.service;
+package id.my.hendisantika.billing.emailsender.service;
 
-import id.my.hendisantika.emailsender.dao.EmailNotificationRepository;
-import id.my.hendisantika.emailsender.model.EmailNotification;
+import id.my.hendisantika.billing.emailsender.dao.EmailNotificationRepository;
+import id.my.hendisantika.billing.emailsender.model.EmailNotification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

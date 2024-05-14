@@ -1,6 +1,6 @@
-package id.my.hendisantika.emailsender.job;
+package id.my.hendisantika.billing.emailsender.job;
 
-import id.my.hendisantika.emailsender.service.EmailProcessorService;
+import id.my.hendisantika.billing.emailsender.service.EmailProcessorService;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
