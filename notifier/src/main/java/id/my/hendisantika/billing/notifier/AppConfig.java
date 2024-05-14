@@ -13,6 +13,7 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -75,5 +76,12 @@ public class AppConfig {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(getEntityManagerFactoryBean().getObject());
         return transactionManager;
+    }
+
+    @Bean
+    public FreeMarkerConfigurationFactoryBean getFreeMarkerConfiguration() {
+        FreeMarkerConfigurationFactoryBean bean = new FreeMarkerConfigurationFactoryBean();
+        bean.setTemplateLoaderPath("/templates/");
+        return bean;
     }
 }
