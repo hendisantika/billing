@@ -1,6 +1,7 @@
 package id.my.hendisantika.billing.notifier.service;
 
 import id.my.hendisantika.billing.notifier.dao.SmsNotificationDao;
+import id.my.hendisantika.billing.notifier.model.SmsNotification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,4 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class SmsNotificationService {
     private final SmsNotificationDao smsNotificationDao;
+
+    public long add(SmsNotification smsNotification) {
+        return smsNotificationDao.add(smsNotification);
+    }
 }
