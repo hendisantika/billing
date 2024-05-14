@@ -1,8 +1,11 @@
 package id.my.hendisantika.billing.notifier.strategy.impl;
 
+import freemarker.template.Template;
+import id.my.hendisantika.billing.notifier.model.NotificationType;
 import id.my.hendisantika.billing.notifier.strategy.NotificationStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,4 +27,8 @@ public class EmailStrategy implements NotificationStrategy {
     private Template template;
     private Configuration freeMarkerConfiguration;
 
+    @Override
+    public boolean match(NotificationType type) {
+        return type == NotificationType.EMAIL;
+    }
 }
