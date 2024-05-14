@@ -9,9 +9,11 @@ import id.my.hendisantika.billing.notifier.model.NotificationType;
 import id.my.hendisantika.billing.notifier.model.SmsNotification;
 import id.my.hendisantika.billing.notifier.strategy.NotificationStrategy;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,5 +54,20 @@ public class SmsStrategy implements NotificationStrategy {
         smsNotification.setStatus(NotificationStatus.NEW);
         smsNotification.setCreatedDate(Instant.now());
         smsNotificationService.add(smsNotification);
+    }
+
+    @Autowired
+    public void setSmsNotificationService(SmsNotificationService smsNotificationService) {
+        this.smsNotificationService = smsNotificationService;
+    }
+
+    @PostConstruct
+    public void init() throws IOException {
+        template = freeMarkerConfiguration.getTemplate("sms.ftl");
+    }
+
+    @Autowired
+    public void setFreeMarkerConfiguration(Configuration freeMarkerConfiguration) {
+        this.freeMarkerConfiguration = freeMarkerConfiguration;
     }
 }
