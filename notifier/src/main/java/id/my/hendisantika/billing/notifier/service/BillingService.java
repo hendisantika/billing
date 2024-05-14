@@ -28,4 +28,8 @@ public class BillingService {
     public List<Billing> findByDueDate(Instant instant) {
         return billingDao.findByDueDate(instant);
     }
+
+    public void update(Billing entity) {
+        billingDao.update(entity);
+    }
 }
