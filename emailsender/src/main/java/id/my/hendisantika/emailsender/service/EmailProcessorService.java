@@ -1,7 +1,12 @@
 package id.my.hendisantika.emailsender.service;
 
+import id.my.hendisantika.emailsender.model.EmailNotification;
+import id.my.hendisantika.emailsender.model.NotificationStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +23,20 @@ import org.springframework.stereotype.Service;
 public class EmailProcessorService {
     private final EmailNotificationService emailNotificationService;
     private final EmailService emailService;
+
+    public void process() {
+        List<EmailNotification> emailNotifications = emailNotificationService.find();
+        for (EmailNotification emailNotification : emailNotifications) {
+            try {
+                emailService.send(emailNotification);
+                emailNotification.setStatus(NotificationStatus.SENT);
+                emailNotification.setChangedDate(Instant.now());
+                emailNotificationService.update(emailNotification);
+            } catch (Exception e) {
+                emailNotification.setStatus(NotificationStatus.FAILED);
+                emailNotification.setChangedDate(Instant.now());
+                emailNotificationService.update(emailNotification);
+            }
+        }
+    }
 }
