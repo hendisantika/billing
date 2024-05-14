@@ -1,5 +1,6 @@
 package id.my.hendisantika.billing.notifier.job;
 
+import id.my.hendisantika.billing.notifier.service.NotificationProcessorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
@@ -21,7 +22,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class NotificationJob implements Job {
-
 
     private final NotificationProcessorService notificationProcessorService;
 
