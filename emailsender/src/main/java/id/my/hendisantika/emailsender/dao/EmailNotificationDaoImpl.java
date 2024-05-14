@@ -29,4 +29,10 @@ public class EmailNotificationDaoImpl implements EmailNotificationRepository {
         Query query = entityManager.createQuery("from EmailNotification e where e.status='NEW'");
         return query.getResultList();
     }
+
+    @Override
+    public void update(EmailNotification emailNotification) {
+        entityManager.merge(emailNotification);
+    }
+
 }
