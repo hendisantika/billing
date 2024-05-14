@@ -1,9 +1,12 @@
 package id.my.hendisantika.emailsender.service;
 
 import id.my.hendisantika.emailsender.dao.EmailNotificationRepository;
+import id.my.hendisantika.emailsender.model.EmailNotification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,4 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class EmailNotificationService {
     private final EmailNotificationRepository emailNotificationRepository;
+
+    public List<EmailNotification> find() {
+        return emailNotificationRepository.find();
+    }
 }
