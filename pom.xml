@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>notifier</module>
+        <!--        <module>notifier</module>-->
         <module>emailsender</module>
     </modules>
 
