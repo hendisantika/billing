@@ -2,6 +2,7 @@ package id.my.hendisantika.billing.notifier.strategy.impl;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import id.my.hendisantika.billing.notifier.model.NotificationType;
 import id.my.hendisantika.billing.notifier.strategy.NotificationStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -23,4 +24,8 @@ public class SmsStrategy implements NotificationStrategy {
     private Template template;
     private Configuration freeMarkerConfiguration;
 
+    @Override
+    public boolean match(NotificationType type) {
+        return type == NotificationType.SMS;
+    }
 }
