@@ -1,4 +1,4 @@
-package id.my.hendisantika.billing.notifier;
+package id.my.hendisantika.billing.notifier.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;

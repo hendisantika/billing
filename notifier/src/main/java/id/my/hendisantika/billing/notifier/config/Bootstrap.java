@@ -1,6 +1,5 @@
 package id.my.hendisantika.billing.notifier.config;
 
-import id.my.hendisantika.billing.notifier.AppConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
