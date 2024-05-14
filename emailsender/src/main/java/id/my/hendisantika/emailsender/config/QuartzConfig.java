@@ -10,6 +10,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
 /**
  * Created by IntelliJ IDEA.
@@ -52,5 +53,12 @@ public class QuartzConfig {
         schedulerFactory.setJobDetails(jobDetail);
         schedulerFactory.setTriggers(trigger);
         return schedulerFactory;
+    }
+
+    @Bean
+    public SpringBeanJobFactory springBeanJobFactory() {
+        AutoWiringSpringBeanJobFactory jobFactory = new AutoWiringSpringBeanJobFactory();
+        jobFactory.setApplicationContext(applicationContext);
+        return jobFactory;
     }
 }
