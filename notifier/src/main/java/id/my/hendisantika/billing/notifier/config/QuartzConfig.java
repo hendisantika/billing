@@ -1,9 +1,11 @@
 package id.my.hendisantika.billing.notifier.config;
 
 import lombok.RequiredArgsConstructor;
+import org.quartz.JobDetail;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.JobDetailFactoryBean;
 
 /**
@@ -28,5 +30,14 @@ public class QuartzConfig {
         jobDetailFactory.setDescription("Invoke Notification Job...");
         jobDetailFactory.setDurability(true);
         return jobDetailFactory;
+    }
+
+    @Bean
+    public CronTriggerFactoryBean trigger(JobDetail jobDetail) {
+        CronTriggerFactoryBean trigger = new CronTriggerFactoryBean();
+        trigger.setJobDetail(jobDetail);
+        trigger.setStartDelay(3000);
+        trigger.setCronExpression("0 0 23 ? * * *");
+        return trigger;
     }
 }
