@@ -4,7 +4,6 @@ import id.my.hendisantika.billing.notifier.model.Billing;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
@@ -21,10 +20,9 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Repository
-@RequiredArgsConstructor
 public class BillingDao {
     @PersistenceContext
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     public List<Billing> findByDueDate(Instant instant) {
         Query query = entityManager.createQuery("from Billing where dueDate <= :instant and billingNotificationStatus='NEW'");

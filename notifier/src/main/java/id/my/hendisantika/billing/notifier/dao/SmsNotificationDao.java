@@ -3,7 +3,6 @@ package id.my.hendisantika.billing.notifier.dao;
 import id.my.hendisantika.billing.notifier.model.SmsNotification;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,10 +16,9 @@ import org.springframework.stereotype.Repository;
  * To change this template use File | Settings | File Templates.
  */
 @Repository
-@RequiredArgsConstructor
 public class SmsNotificationDao {
     @PersistenceContext
-    private final EntityManager entityManager;
+    private EntityManager entityManager;
 
     public long add(SmsNotification smsNotification) {
         entityManager.persist(smsNotification);
