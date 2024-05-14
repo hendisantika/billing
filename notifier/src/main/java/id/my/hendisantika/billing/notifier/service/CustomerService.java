@@ -1,6 +1,8 @@
 package id.my.hendisantika.billing.notifier.service;
 
 import id.my.hendisantika.billing.notifier.dao.CustomerDao;
+import id.my.hendisantika.billing.notifier.exception.NotFoundException;
+import id.my.hendisantika.billing.notifier.model.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,4 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CustomerService {
     private final CustomerDao customerDao;
+
+    public Customer findById(long id) throws NotFoundException {
+        return customerDao.findById(id).orElseThrow(() ->
+                new NotFoundException("Customer with id " + id + " not found."));
+    }
 }
