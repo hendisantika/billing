@@ -1,9 +1,15 @@
 package id.my.hendisantika.billing.notifier;
 
+import com.zaxxer.hikari.HikariDataSource;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,5 +25,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan("id.my.hendisantika.billing.notifier")
 @PropertySource("classpath:notifier.properties")
+@RequiredArgsConstructor
 public class AppConfig {
+    private final Environment environment;
+
+    @Bean
+    public DataSource dataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setDriverClassName(environment.getProperty("db.driver"));
+        dataSource.setJdbcUrl(environment.getProperty("db.url"));
+        dataSource.setUsername(environment.getProperty("db.username"));
+        dataSource.setPassword(environment.getProperty("db.password"));
+        return dataSource;
+    }
 }
