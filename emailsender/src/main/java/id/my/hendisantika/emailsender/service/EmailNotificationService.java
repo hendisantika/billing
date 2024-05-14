@@ -27,4 +27,8 @@ public class EmailNotificationService {
     public List<EmailNotification> find() {
         return emailNotificationRepository.find();
     }
+
+    public void update(EmailNotification emailNotification) {
+        emailNotificationRepository.update(emailNotification);
+    }
 }
