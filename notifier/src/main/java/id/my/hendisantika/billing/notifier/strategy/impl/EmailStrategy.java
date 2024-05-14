@@ -1,12 +1,21 @@
 package id.my.hendisantika.billing.notifier.strategy.impl;
 
+import freemarker.template.Configuration;
 import freemarker.template.Template;
+import id.my.hendisantika.billing.notifier.model.Billing;
+import id.my.hendisantika.billing.notifier.model.Customer;
+import id.my.hendisantika.billing.notifier.model.EmailNotification;
+import id.my.hendisantika.billing.notifier.model.NotificationStatus;
 import id.my.hendisantika.billing.notifier.model.NotificationType;
 import id.my.hendisantika.billing.notifier.strategy.NotificationStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,5 +39,22 @@ public class EmailStrategy implements NotificationStrategy {
     @Override
     public boolean match(NotificationType type) {
         return type == NotificationType.EMAIL;
+    }
+
+    @Override
+    public void generate(Billing billing, Customer customer) throws Exception {
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("billing", billing);
+        model.put("customer", customer);
+
+        String content = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+
+        EmailNotification emailNotification = new EmailNotification();
+        emailNotification.setContent(content);
+        emailNotification.setAddress(customer.getEmail());
+        emailNotification.setStatus(NotificationStatus.NEW);
+        emailNotification.setCreatedDate(Instant.now());
+        emailNotificationService.add(emailNotification);
     }
 }
