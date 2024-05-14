@@ -31,4 +31,8 @@ public class BillingDao {
         query.setParameter("instant", instant);
         return query.getResultList();
     }
+
+    public void update(Billing entity) {
+        entityManager.merge(entity);
+    }
 }
