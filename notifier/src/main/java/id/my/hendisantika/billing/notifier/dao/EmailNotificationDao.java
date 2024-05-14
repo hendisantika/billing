@@ -1,5 +1,6 @@
 package id.my.hendisantika.billing.notifier.dao;
 
+import id.my.hendisantika.billing.notifier.model.EmailNotification;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -20,4 +21,9 @@ import org.springframework.stereotype.Repository;
 public class EmailNotificationDao {
     @PersistenceContext
     private final EntityManager entityManager;
+
+    public long add(EmailNotification emailNotification) {
+        entityManager.persist(emailNotification);
+        return emailNotification.getId();
+    }
 }
