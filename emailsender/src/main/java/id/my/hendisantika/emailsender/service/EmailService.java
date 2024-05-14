@@ -1,8 +1,12 @@
 package id.my.hendisantika.emailsender.service;
 
 import id.my.hendisantika.emailsender.model.EmailNotification;
+import jakarta.mail.internet.MimeMessage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,8 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @Service
+@RequiredArgsConstructor
 public class EmailService {
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
     @Value("${mail.subject}")
     private String subject;
@@ -29,9 +34,22 @@ public class EmailService {
 
     public void send(EmailNotification emailNotification) {
         try {
-            mailSender.send(getMessagePreparator(emailNotification));
+            mailSender.send(getMessagePreparation(emailNotification));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private MimeMessagePreparator getMessagePreparation(EmailNotification emailNotification) {
+        MimeMessagePreparator preparation = new MimeMessagePreparator() {
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+                helper.setSubject(subject);
+                helper.setFrom(from);
+                helper.setTo(emailNotification.getAddress());
+                helper.setText(emailNotification.getContent(), true);
+            }
+        };
+        return preparation;
     }
 }

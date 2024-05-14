@@ -9,6 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
@@ -25,6 +28,9 @@ import java.time.Instant;
 @Entity
 @Table(name = "EMAIL_NOTIFICATION")
 @SequenceGenerator(name = "S_EMAIL_NOTIFICATION", sequenceName = "S_EMAIL_NOTIFICATION", allocationSize = 1)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmailNotification {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "S_EMAIL_NOTIFICATION")
