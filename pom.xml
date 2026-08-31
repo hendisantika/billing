@@ -20,7 +20,7 @@
         <quartz.version>2.5.2</quartz.version>
         <slf4j.version>2.0.18</slf4j.version>
         <logback.version>1.6.3</logback.version>
-        <freemarker.version>2.3.34</freemarker.version>
+        <freemarker.version>2.3.35</freemarker.version>
     </properties>
 
     <dependencyManagement>
